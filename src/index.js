@@ -5,7 +5,7 @@ const catInfoE = document.querySelector('.cat-info');
 const loaderE = document.querySelector('.loader');
 const errorE = document.querySelector('.error');
 
-//CREATE THE OPTIONS
+//CREATE THE DROPDOWN OPTIONS
 function chooseBreed() {
     fetchBreeds().then(data => {
         loaderE.classList.replace('loader', 'is-hidden');
@@ -30,10 +30,10 @@ breedSelectE.addEventListener('change', (e) => {
     let breedId = e.target.value;
 
     fetchCatByBreed(breedId).then(data => {
-        const { url, breeds } = data[0];
-        const { name, description, temperament } = breeds[0];
+        const {url, breeds} = data[0];
+        const {name, description, temperament} = breeds[0];
         catInfoE.innerHTML = `
-            <img src=${url} alt=${name} width="400:/>
+            <img src=${url} alt=${name} width="400"/>
             <div>
                 <h2>${name}</h2>
                 <p>${description}</p>
@@ -42,6 +42,7 @@ breedSelectE.addEventListener('change', (e) => {
         `;
         catInfoE.classList.remove('is-hidden');
         loaderE.classList.add('is-hidden');
+        errorE.classList.add('is-hidden');
     });
 })
 
